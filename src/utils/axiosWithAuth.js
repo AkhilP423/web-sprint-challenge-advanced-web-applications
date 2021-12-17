@@ -1,6 +1,9 @@
 import axios from 'axios';
 
+//finished axios with AUTH, created Token
+
 const axiosWithAuth = ()=> {
+
     const token = localStorage.getItem('token');
 
     return axios.create({
@@ -14,4 +17,4 @@ const axiosWithAuth = ()=> {
 export default axiosWithAuth;
 
 //Task List:
-//1. Complete axiosWithAuth
+//1. Complete axiosWithAuth DONE

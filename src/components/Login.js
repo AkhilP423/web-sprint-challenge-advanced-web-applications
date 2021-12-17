@@ -12,7 +12,7 @@ const Login = () => {
             password: ''
         }
     });
-    //error states
+    //error 
     const [error, setError] = useState(null);
 
     const { push } = useHistory();
@@ -30,11 +30,13 @@ const Login = () => {
         const handleLogin = (e) => {
         e.preventDefault();
         axios.post(`http://localhost:5000/api/login`, user.credentials)
+
             .then(res => {
                 localStorage.setItem("token", res.data.token);
                 localStorage.setItem("username", res.data.username);
                 push('/view');
             })
+
             .catch(err => {
                 console.log(err);
                 setError("Invalid Login Information");

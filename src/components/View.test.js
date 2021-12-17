@@ -2,6 +2,9 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import View from './View';
 
+
+//THIS PAGE IS USELESS, DO NOT WORK
+
 test("renders zero articles without errors", async () => {
 });
 

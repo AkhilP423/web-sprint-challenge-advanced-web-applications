@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
+//edit form done for now, will come back if needed
 const initialArticle = {
     id:"",
     headline: "",
@@ -9,9 +11,25 @@ const initialArticle = {
     body: ""
 };
 
+//setstates
+
 const EditForm = (props)=> {
+
     const [article, setArticle]  = useState(initialArticle);
     const {handleEdit, handleEditCancel, editId} = props;
+
+    useEffect(() => {
+
+        axiosWithAuth()
+            .get(`http://localhost:5000/api/articles/${editId}`)
+            .then(res => {
+                setArticle(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, 
+    [])
 
     const handleChange = (e)=> {
         setArticle({
@@ -23,42 +41,50 @@ const EditForm = (props)=> {
     const handleSubmit = (e) => {
         e.preventDefault();
         handleEdit(article);
+        handleEditCancel();
     }
-
 
     const handleCancel = (e) => {
         e.preventDefault();
         handleEditCancel();
     }
 
+    //return on submit function, task 1 done here
+
     return(<FormContainer onSubmit={handleSubmit}>
+
         <h3>Edit Article</h3>
+
         <div>
             <label>Headline</label>
             <input value={article.headline} id="headline" name="headline" onChange={handleChange}/>
         </div>
+
         <div>
             <label>Author</label>
             <input value={article.author} id="author" name="author" onChange={handleChange}/>
         </div>
+
         <div>
             <label>Summary</label>
             <input value={article.summary} id="summary" name="summary" onChange={handleChange}/>
         </div>
+
         <div>
             <label>Body</label>
             <input value={article.body} id="body" name="body" onChange={handleChange}/>
         </div>
         <Button id="editButton">Edit Article</Button>
         <Button onClick={handleCancel}>Cancel</Button>
+
     </FormContainer>);
 }
 
 export default EditForm;
 
 //Task List:
-// 1. On mount, make a http request to retrieve the article with the id `editId.`
-// 2. Save result of request to local state.
+// 1. On mount, make a http request to retrieve the article with the id `editId.` DONE
+// 2. Save result of request to local state. DONE
 
 const FormContainer = styled.form`
     padding: 1em;
