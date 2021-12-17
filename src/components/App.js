@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 import styled from 'styled-components';
-
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
 import PrivateRoute from './PrivateRoute';
 import View from './View';
 import Logout from './Logout';
-//have not built private route, or anything else yet. Just verified app.js runs and axios with Auth runs.
+
 const App = () => {
     return (
         <AppContainer>
