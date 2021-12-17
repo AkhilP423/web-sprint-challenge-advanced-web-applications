@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Article from './Article';
 import EditForm from './EditForm';
+import axiosWithAuth from './../utils/axiosWithAuth';
 
-//started work on view.js here, finish tasks and then done.
+//Finished all tasks, code is stable and tests passing
 
 const View = (props) => {
+
     const [articles, setArticles] = useState([]);
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
-
+//task 1, done
     useEffect(() => {
 
         axiosWithAuth()
+
             .get(`http://localhost:5000/api/articles`)
             .then(res => {
                 setArticles(res.data);
@@ -21,21 +24,43 @@ const View = (props) => {
                 console.log(err);
             })
     }, 
+    
     [])
-
+//task 3, done, error message fixed
     const handleDelete = (id) => {
+
         axiosWithAuth()
-    }
 
+            .delete(`http://localhost:5000/api/articles/${id}`)
+            .then(res => {
+                setArticles(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+//task 4, done
     const handleEdit = (article) => {
+
+        axiosWithAuth()
+
+            .put(`http://localhost:5000/api/articles/${editId}`, article)
+            .then(res => {
+                setArticles(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
     }
 
-    const handleEditSelect = (id)=> {
+    const handleEditSelect = (id) => {
         setEditing(true);
         setEditId(id);
     }
 
-    const handleEditCancel = ()=>{
+    const handleEditCancel = () => {
         setEditing(false);
     }
 
@@ -51,7 +76,7 @@ const View = (props) => {
                     })
                 }
             </ArticleContainer>
-            
+
             {
                 editing && <EditForm editId={editId} handleEdit={handleEdit} handleEditCancel={handleEditCancel}/>
             }
@@ -63,9 +88,9 @@ export default View;
 
 //Task List:
 //1. Build and import axiosWithAuth module in the utils. DONE
-//2. When the component mounts, make an http request that adds all articles to state.
-//3. Complete handleDelete method. It should make a request that delete the article with the included id.
-//4. Complete handleEdit method. It should make a request that updates the article that matches the included article param.
+//2. When the component mounts, make an http request that adds all articles to state. DONE
+//3. Complete handleDelete method. It should make a request that delete the article with the included id. DONE
+//4. Complete handleEdit method. It should make a request that updates the article that matches the included article param. DONe
 
 
 const Container = styled.div`
