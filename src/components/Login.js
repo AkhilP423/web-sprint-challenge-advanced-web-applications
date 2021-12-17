@@ -1,25 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Login = () => {
     
+    //set initial states
+    const [user, setUser] = useState({
+        credentials: {
+            username: '',
+            password: ''
+        }
+    });
+    //error states
+    const [error, setError] = useState(null);
+
+    const { push } = useHistory();
+    //finished handle change
+    const handleChange = (e) => {
+        setUser({
+            ...user,
+            credentials: {
+                ...user.credentials,
+                [e.target.name]: e.target.value
+            }
+        })
+    }
+    //login post
+        const handleLogin = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:5000/api/login`, user.credentials)
+            .then(res => {
+                localStorage.setItem("token", res.data.token);
+                localStorage.setItem("username", res.data.username);
+                push('/view');
+            })
+            .catch(err => {
+                console.log(err);
+                setError("Invalid Login Information");
+            })
+    }
+
+    //Enter login information here, set default inputs and onchange
     return(<ComponentContainer>
         <ModalContainer>
             <h1>Welcome to Blogger Pro</h1>
             <h2>Please enter your account information.</h2>
+            <form onSubmit={handleLogin}>
+                <Label htmlFor="username">Username
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={user.credentials.username}
+                        onChange={handleChange}
+                    />
+                </Label>
+                <Label htmlFor="password">Password
+                    <input
+                        type="text"
+                        name="password"
+                        id="password"
+                        value={user.credentials.password}
+                        onChange={handleChange}
+                    />
+                </Label>
+                <button id="submit">Submit</button>
+            </form>
+        {
+            //Task 2
+            !error ? <p></p> : <p id="error">{error}</p>
+        }
         </ModalContainer>
     </ComponentContainer>);
 }
 
 export default Login;
 
+
 //Task List
-//1. Build login form DOM from scratch, making use of styled components if needed. Make sure the username input has id="username" and the password input as id="password".
-//2. Add in a p tag with the id="error" under the login form for use in error display.
-//3. Add in necessary local state to support login form and error display.
-//4. When login form is submitted, make an http call to the login route. Save the auth token on a successful response and redirect to view page.
-//5. If the response is not successful, display an error statement. **a server provided error message can be found in ```err.response.data```**
-//6. MAKE SURE TO ADD id="username", id="password", id="error" AND id="submit" TO THE APPROPRIATE DOM ELEMENTS. YOUR AUTOTESTS WILL FAIL WITHOUT THEM.
+//1. Build login form DOM from scratch, making use of styled components if needed. Make sure the username input has id="username" and the password input as id="password". DONE
+//2. Add in a p tag with the id="error" under the login form for use in error display. DONE
+//3. Add in necessary local state to support login form and error display. DONE
+//4. When login form is submitted, make an http call to the login route. Save the auth token on a successful response and redirect to view page. DONE
+//5. If the response is not successful, display an error statement. **a server provided error message can be found in ```err.response.data```** DONE
+//6. MAKE SURE TO ADD id="username", id="password", id="error" AND id="submit" TO THE APPROPRIATE DOM ELEMENTS. YOUR AUTOTESTS WILL FAIL WITHOUT THEM. DONE
 
 const ComponentContainer = styled.div`
     height: 70%;

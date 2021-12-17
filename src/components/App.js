@@ -31,14 +31,11 @@ const App = () => {
 
 export default App;
 
-
-
 //Task List
-//1. Create and import PrivateRoute component.
-//2. Create a Route for Login pointing to '/login.'
-//3. Create a PrivateRoute for View component point to '/view.'
-//4. Create a PrivateRoute for Logout component pointing to '/logout.'
-
+//1. Create and import PrivateRoute component. WIP
+//2. Create a Route for Login pointing to '/login.'DONE
+//3. Create a PrivateRoute for View component point to '/view.' WIP
+//4. Create a PrivateRoute for Logout component pointing to '/logout.' WIP
 
 const AppContainer = styled.div`
   height: 100%;
