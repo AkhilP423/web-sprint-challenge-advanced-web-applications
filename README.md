@@ -121,8 +121,19 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
+   Tokens are used for user authentication. They come in the form of strings and are assigned when we make a login post or request through an api.
+
 2. What steps can you take in your web apps to keep your data secure?
+   You can create protected routes for certain states of the web application. To access said areas, you can use auth tokens. Essentially, axiosWithAuth will create a barrier for HTTP methods and prevent unauthorized tokens from viewing or editing data.
 
 3. Describe how web servers work.
-
+   A web server is a computer that stores code for a website, and it can also be a program that runs on the computer.A web server is a computer that stores code for a website, or a program that runs on this computer. The servers share code across the internet continuously, and loading a site uses these servers upon request.
+   
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+   Crud Acronym - Https Method (Respectively)
+
+   Create - POST
+   Read - Get
+   Update - PUT
+   Delete - DELETE
