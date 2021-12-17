@@ -1,26 +1,38 @@
 import React from 'react';
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import styled from 'styled-components';
 
 import Header from './Header';
 import BloomHeader from './BloomHeader';
 import Login from './Login';
-
+import PrivateRoute from './PrivateRoute';
+import View from './View';
+import Logout from './Logout';
+//have not built private route, or anything else yet. Just verified app.js runs and axios with Auth runs.
 const App = () => {
-  return (
-    <AppContainer>
-      <BloomHeader/>
-      <Header/>
-      <RouteContainer>
-        <Route exact path="/">
-          <Login/>
-        </Route>          
-      </RouteContainer>
-    </AppContainer>
-  )
+    return (
+        <AppContainer>
+            <BloomHeader/>
+            <Header />
+            <RouteContainer>
+                <Route exact path="/">
+                    <Login />
+                </Route>
+                <Route path="/login">
+                    <Login />
+                </Route>
+                <PrivateRoute path="/view">
+                    <View />
+                </PrivateRoute>
+                <PrivateRoute path="/logout" component={Logout} />
+            </RouteContainer>
+        </AppContainer>
+    )
 }
 
 export default App;
+
+
 
 //Task List
 //1. Create and import PrivateRoute component.

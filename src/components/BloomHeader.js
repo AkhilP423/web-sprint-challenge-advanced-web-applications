@@ -14,7 +14,7 @@ const HeaderStyle = styled.nav`
   padding: 0.5em;
   background-color: #333333;
   color:white;
-  font-size: 1.25rem;
+  font-size: 1.25rem;z
   font-family: "Lato";
   display: flex;
   flex-direction: row;
