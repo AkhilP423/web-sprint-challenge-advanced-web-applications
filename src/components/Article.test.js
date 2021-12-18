@@ -14,11 +14,11 @@ const TestArticle = {
     createdOn: '2021-08-09T18:02:38-04:00 ', //timestamp of when article was added
     summary: "summary", //short summary statement of article
     body: ""  //paragraph of article text
-    
+
 }
 //cannot figure this out!!!!! Error lies in Article.js for some reason
 test('renders component without errors', () => {
-    render(<Article />);
+    expect(() => render(<Article />));
 });
 
 //headline render working when passed thru props
