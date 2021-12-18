@@ -16,7 +16,7 @@ const TestArticle = {
     body: ""  //paragraph of article text
 
 }
-//cannot figure this out!!!!! Error lies in Article.js for some reason
+//fixed expect before render
 test('renders component without errors', () => {
     expect(() => render(<Article />));
 });

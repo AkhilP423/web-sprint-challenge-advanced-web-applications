@@ -5,8 +5,8 @@ import View from './View';
 
 //THIS PAGE IS USELESS, DO NOT WORK
 
-test("renders zero articles without errors", async () => {
-});
+//test("renders zero articles without errors", async () => {
+//});
 
 // test("renders three articles without errors", async ()=> {
 // });

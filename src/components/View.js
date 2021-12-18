@@ -12,6 +12,7 @@ const View = (props) => {
     const [editing, setEditing] = useState(false);
     const [editId, setEditId] = useState();
 //task 1, done
+
     useEffect(() => {
 
         axiosWithAuth()
@@ -26,7 +27,9 @@ const View = (props) => {
     }, 
     
     [])
+
 //task 3, done, error message fixed
+
     const handleDelete = (id) => {
 
         axiosWithAuth()
@@ -41,6 +44,7 @@ const View = (props) => {
 
     }
 //task 4, done
+
     const handleEdit = (article) => {
 
         axiosWithAuth()

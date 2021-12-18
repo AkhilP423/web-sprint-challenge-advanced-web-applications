@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axiosWithAuth from './../utils/axiosWithAuth';
 
-//edit form done for now, will come back if needed
+//edit form DONE and edits working properly
 const initialArticle = {
     id:"",
     headline: "",

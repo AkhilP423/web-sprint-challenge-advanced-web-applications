@@ -121,7 +121,7 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain what a token is used for.
 
-   Tokens are used for user authentication. They come in the form of strings and are assigned when we make a login post or request through an api.
+   Tokens are used for user authentication. They come in the form of strings and are assigned when we make a login post or request through an api. They are a secure way to ensure that only the correct user has access to information granted to said user.
 
 2. What steps can you take in your web apps to keep your data secure?
    You can create protected routes for certain states of the web application. To access said areas, you can use auth tokens. Essentially, axiosWithAuth will create a barrier for HTTP methods and prevent unauthorized tokens from viewing or editing data.
